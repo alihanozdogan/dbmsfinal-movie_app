@@ -1,0 +1,73 @@
+<body>
+  <div class="container" id="main-container" *ngIf="authenticationService.isAuthenticated">
+    <div class="menu">
+      <ul>
+        <li class="user">
+          <div class="search">
+            <input type="text" (ngModelChange)="searchMovies(key.value)" #key="ngModel" ngModel name="key"
+              id="searchName" placeholder="Film Ara..." required />
+            <button (click)="searchMovies(key.value)"><i class="fas fa-search"></i></button>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <div *ngFor="let movie of paginatedMovies" class="col-md-4">
+        <div class="card m-b-30">
+          <div class="card-body text-center">
+            <img [src]="movie.imageUrl" alt="{{ movie.title }}" class="img-fluid card-img-top" />
+            <div class="card-title mt-3">
+              <h5>{{ movie.title }}</h5>
+              <p class="m-0">Yıl: {{ movie.year }}</p>
+              <!-- Aktörlerin listesi -->
+              <h6 class="mt-2" *ngIf="movie.actors && movie.actors.length > 0">Oyuncular:</h6>
+              <ul class="list-unstyled">
+                <li *ngFor="let actor of movie.actors">
+                  {{ actor.name }} {{ actor.surname }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div></div>
+          <ul class="list-group list-group-flush">
+            <!-- Tür bilgisi -->
+            <li class="list-group-item" *ngIf="movie.genres && movie.genres.length > 0">
+              Tür: {{ getGenres(movie) }}
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-film float-right"></i>Puan: {{ movie?.rating }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification for no movies -->
+  <div *ngIf="movies?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">Film Bulunamadı!</h4>
+    </div>
+  </div>
+</body>
+<!-- Sayfalama düğmeleri -->
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let page of [].constructor(totalPages()); let i = index" class="page-item"
+      [class.active]="currentPage === i + 1">
+      <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages()">
+      <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

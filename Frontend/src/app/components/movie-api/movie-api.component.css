@@ -1,0 +1,85 @@
+.menu {
+    padding-top: 40px;
+    padding-right: 15px;
+  }
+  
+  .menu ul {
+    list-style: none;
+  }
+  .admin{
+    text-align: left;
+  }
+  .user{
+    text-align: right;
+        
+} 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-img-top {
+  width: 350px;
+  height: 350px; /* Sabit yükseklik belirledik */
+  object-fit: contain; /* Resimlerin orantılı olarak görünmesini sağladık */
+  background-color: #f8f8f8; /* Arka plan rengi isteğe bağlı */
+}
+
+.card-title {
+  margin-top: 10px;
+}
+
+.card-title h5 {
+  margin: 0;
+}
+
+.card-title p {
+  margin: 5px 0 0;
+}
+
+.m-b-30 {
+  margin-bottom: 30px;
+}
+.m-0{
+  padding-top: 10px;
+}
+.row > .col-md-4 {
+  display: flex;
+}
+.list-group {
+  padding-bottom: 20px;
+
+}
+
+.col-md-4 {
+  margin-bottom: 30px;
+}
+
+.card ul {
+  margin-top: 0;
+}
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.search input[type="text"] {
+  padding: 10px;
+  border: 1px solid #292929;
+  border-radius: 5px;
+}
+
+.search button {
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
